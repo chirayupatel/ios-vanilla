@@ -14,6 +14,7 @@
 		FABE84E21F151CD900833B93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABE84E01F151CD900833B93 /* LaunchScreen.storyboard */; };
 		FABE84ED1F151CD900833B93 /* VanillaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE84EC1F151CD900833B93 /* VanillaTests.swift */; };
 		FABE84F81F151CD900833B93 /* VanillaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE84F71F151CD900833B93 /* VanillaUITests.swift */; };
+		FABE85061F153BAF00833B93 /* ProjectID.flybits in Resources */ = {isa = PBXBuildFile; fileRef = FABE85051F153BAF00833B93 /* ProjectID.flybits */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		FABE84F31F151CD900833B93 /* VanillaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VanillaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABE84F71F151CD900833B93 /* VanillaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanillaUITests.swift; sourceTree = "<group>"; };
 		FABE84F91F151CD900833B93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FABE85051F153BAF00833B93 /* ProjectID.flybits */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ProjectID.flybits; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		FABE84CB1F151CD900833B93 = {
 			isa = PBXGroup;
 			children = (
+				FABE85051F153BAF00833B93 /* ProjectID.flybits */,
 				FABE84D61F151CD900833B93 /* Vanilla */,
 				FABE84EB1F151CD900833B93 /* VanillaTests */,
 				FABE84F61F151CD900833B93 /* VanillaUITests */,
@@ -235,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABE85061F153BAF00833B93 /* ProjectID.flybits in Resources */,
 				FABE84E21F151CD900833B93 /* LaunchScreen.storyboard in Resources */,
 				FABE84DF1F151CD900833B93 /* Assets.xcassets in Resources */,
 				FABE84DD1F151CD900833B93 /* Main.storyboard in Resources */,
@@ -516,6 +520,7 @@
 				FABE84FE1F151CD900833B93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FABE84FF1F151CD900833B93 /* Build configuration list for PBXNativeTarget "VanillaTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +529,7 @@
 				FABE85011F151CD900833B93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FABE85021F151CD900833B93 /* Build configuration list for PBXNativeTarget "VanillaUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +538,7 @@
 				FABE85041F151CD900833B93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
