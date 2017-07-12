@@ -1,0 +1,10 @@
+framework module ContextSDK {
+  umbrella header "ContextSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module ContextSDK.Swift {
+    header "ContextSDK-Swift.h"
+}

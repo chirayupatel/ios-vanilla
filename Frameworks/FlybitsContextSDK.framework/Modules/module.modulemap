@@ -1,0 +1,10 @@
+framework module FlybitsContextSDK {
+  umbrella header "FlybitsContextSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module FlybitsContextSDK.Swift {
+    header "FlybitsContextSDK-Swift.h"
+}

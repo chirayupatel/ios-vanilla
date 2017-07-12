@@ -1,0 +1,10 @@
+framework module FlybitsPushSDK {
+  umbrella header "FlybitsPushSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module FlybitsPushSDK.Swift {
+    header "FlybitsPushSDK-Swift.h"
+}

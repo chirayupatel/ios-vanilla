@@ -1,0 +1,10 @@
+framework module KernelSDK {
+  umbrella header "KernelSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module KernelSDK.Swift {
+    header "KernelSDK-Swift.h"
+}

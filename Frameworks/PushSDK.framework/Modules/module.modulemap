@@ -1,0 +1,10 @@
+framework module PushSDK {
+  umbrella header "PushSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module PushSDK.Swift {
+    header "PushSDK-Swift.h"
+}

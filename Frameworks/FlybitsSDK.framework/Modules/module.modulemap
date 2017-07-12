@@ -1,0 +1,10 @@
+framework module FlybitsSDK {
+  umbrella header "FlybitsSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module FlybitsSDK.Swift {
+    header "FlybitsSDK-Swift.h"
+}
