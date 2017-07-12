@@ -13,9 +13,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var projectID: String!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        guard let url = Bundle.main.url(forResource: "FlybitsProjectID", withExtension: "plist") else {
+            print("Missing FlybitsProjectID.plist file")
+            return false
+        }
+        guard let dictionary = NSDictionary(contentsOf: url), let projectID = dictionary["ProjectID"] as? String else {
+            print("Failed reading from ProjectID key in FlybitsProjectID.plist file")
+            return false
+        }
+        self.projectID = projectID
+        
         return true
     }
 
