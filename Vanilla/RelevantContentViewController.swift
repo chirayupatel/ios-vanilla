@@ -48,9 +48,9 @@ class RelevantContentTableViewController: UITableViewController {
         
         if relevantTimer == nil {
             DispatchQueue.main.async {
-                self.relevantTimer = Timer.scheduledTimer(timeInterval: 7.0, target: self, selector: #selector(RelevantContentTableViewController.loadAllRelevantData), userInfo: nil, repeats: true)
+                self.relevantTimer = Timer(fireAt: Date(), interval: 7, target: self, selector: #selector(RelevantContentTableViewController.loadAllRelevantData), userInfo: nil, repeats: true)
+                RunLoop.current.add(self.relevantTimer!, forMode: .defaultRunLoopMode)
             }
-            loadAllRelevantData()
         }
     }
     
