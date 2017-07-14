@@ -8,6 +8,7 @@
 
 import UIKit
 import FlybitsKernelSDK
+import FlybitsContextSDK
 
 class TextOnlyCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
@@ -31,6 +32,7 @@ class NoDataCell: UITableViewCell {
 class RelevantContentTableViewController: UITableViewController {
     
     var pagedContent: Paged<Content>?
+    var contextPlugin: BankingDataContextPlugin?
     
     // Define template IDs so that they're more usable in code
     enum TemplateID: String {
@@ -45,6 +47,9 @@ class RelevantContentTableViewController: UITableViewController {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Context", style: .plain, target: self, action: #selector(RelevantContentTableViewController.showContextMenu))
+        
+        self.contextPlugin = BankingDataContextPlugin(accountBalance: 0, segmentation: "", creditCard: "")
+        _ = try? ContextManager.shared.register(self.contextPlugin!)
         
         if relevantTimer == nil {
             DispatchQueue.main.async {
@@ -80,7 +85,12 @@ class RelevantContentTableViewController: UITableViewController {
     }
     
     func showContextMenu() {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContextMenu")
+        guard let contextPlugin = self.contextPlugin else {
+            print("Error: You haven't instantiated a context plugin yet.")
+            return
+        }
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContextMenu") as! ContextMenuViewController
+        vc.contextPlugin = contextPlugin
         let nav = UINavigationController(rootViewController: vc)
         DispatchQueue.main.async {
             self.navigationController?.show(nav, sender: self)

@@ -25,10 +25,10 @@ class ContextMenuViewController: UIViewController, UITableViewDelegate, UITableV
         ["Send Credit Card: VISA","Send Credit Card: Mastercard"]
     ]
     // Edit this? Edit effect tableView(_:didSelectRowAt:)
-    let context = BankingDataContextPlugin(accountBalance: 0, segmentation: "", creditCard: "")
-
+    
     @IBOutlet weak var tableView: UITableView!
     weak var userLogInDelegate: UserLogInDelegate?
+    var contextPlugin: BankingDataContextPlugin!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,28 +79,28 @@ class ContextMenuViewController: UIViewController, UITableViewDelegate, UITableV
         case .contextSegmentationUpdates:
             switch indexPath.row {
             case 0:
-                context.segmentation = "Student"
+                contextPlugin.segmentation = "Student"
             case 1:
-                context.segmentation = "High-Net"
+                contextPlugin.segmentation = "High-Net"
             default:
-                context.segmentation = "Pensioner"
+                contextPlugin.segmentation = "Pensioner"
             }
         case .contextBalanceUpdates:
             switch indexPath.row {
             case 0:
-                context.accountBalance = 1000
+                contextPlugin.accountBalance = 1000
             default:
-                context.accountBalance = 10000
+                contextPlugin.accountBalance = 10000
             }
         case .contextCreditCardUpdates:
             switch indexPath.row {
             case 0:
-                context.creditCard = "VISA"
+                contextPlugin.creditCard = "VISA"
             default:
-                context.creditCard = "Mastercard"
+                contextPlugin.creditCard = "Mastercard"
             }
         }
-        context.refreshData(completion: receivedUpdate)
+        
         DispatchQueue.main.async {
             self.navigationController?.dismiss(animated: true, completion: nil)
         }
