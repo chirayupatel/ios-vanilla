@@ -29,9 +29,15 @@ public class BankingDataContextPlugin: NSObject, ContextPlugin {
         
         // Build context data for rules evaluation
         var customData = [String: Any]()
-        customData["accountBalance"] = accountBalance
-        customData["segmentation"] = segmentation
-        customData["creditCard"] = creditCard
+        if accountBalance > 0 {
+            customData["accountBalance"] = accountBalance
+        }
+        if segmentation != "" {
+            customData["segmentation"] = segmentation
+        }
+        if creditCard != "" {
+            customData["creditCard"] = creditCard
+        }
         
         completion(customData, nil)
     }
