@@ -81,8 +81,9 @@ class RelevantContentTableViewController: UITableViewController {
     
     func showContextMenu() {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContextMenu")
+        let nav = UINavigationController(rootViewController: vc)
         DispatchQueue.main.async {
-            self.navigationController?.show(vc, sender: self)
+            self.navigationController?.show(nav, sender: self)
         }
     }
         
