@@ -125,22 +125,7 @@ class RelevantContentTableViewController: UITableViewController {
             guard let contentData = contentInstance.pagedContentData?.elements.first as? ImageOnlyContent else {
                 return cell
             }
-            
-            var components = URLComponents(string: contentData.imageURL.absoluteString)!
-            if components.scheme == nil {
-                components.scheme = "http"
-            }
-            let urlRequest = URLRequest(url: components.url!)
-            let session = URLSession(configuration: URLSessionConfiguration.default)
-            let request = session.dataTask(with: urlRequest) { data, response, error in
-                guard let data = data, error == nil else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    cell.imgView.image = UIImage(data: data)
-                }
-            }
-            request.resume()
+            cell.imgView.downloadImageFrom(url: contentData.imageURL, contentMode: .scaleAspectFill)
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MixedCell", for: indexPath) as! MixedCell
@@ -149,22 +134,23 @@ class RelevantContentTableViewController: UITableViewController {
             }
             cell.nameLabel?.text = contentData.textTitle.value!
             cell.descriptionLabel?.text = contentData.textDescription.value!
-            var components = URLComponents(string: contentData.imageURL.absoluteString)!
-            if components.scheme == nil {
-                components.scheme = "http"
-            }
-            let urlRequest = URLRequest(url: components.url!)
-            let session = URLSession(configuration: URLSessionConfiguration.default)
-            let request = session.dataTask(with: urlRequest) { data, response, error in
-                guard let data = data, error == nil else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    cell.imgView.image = UIImage(data: data)
-                }
-            }
-            request.resume()
+            cell.imgView.downloadImageFrom(url: contentData.imageURL, contentMode: .scaleAspectFill)
             return cell
         }
+    }
+}
+
+extension UIImageView {
+    func downloadImageFrom(url: URL, contentMode: UIViewContentMode) {
+        var components = URLComponents(string: url.absoluteString)!
+        if components.scheme == nil {
+            components.scheme = "http"
+        }
+        URLSession.shared.dataTask(with: components.url!) { data, response, error in
+            DispatchQueue.main.async {
+                self.contentMode = contentMode
+                if let data = data { self.image = UIImage(data: data) }
+            }
+        }.resume()
     }
 }
