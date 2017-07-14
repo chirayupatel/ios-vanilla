@@ -20,6 +20,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We will use your location as context to provide you with relative content!</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>When in use, we will use your location as context to provide you with relative content!</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -29,6 +33,8 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -46,9 +52,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>When in use, we will use your location as context to provide you with relative content!</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>We will use your location as context to provide you with relative content!</string>
 </dict>
 </plist>

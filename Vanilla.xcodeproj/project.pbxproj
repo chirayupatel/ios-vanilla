@@ -7,14 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA546D391F16B8A400038EDA /* Data Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA546D381F16B8A400038EDA /* Data Models.swift */; };
+		FA7556A01F16C45100D8751A /* FlybitsKernelSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD573731F1662BF0057D5BB /* FlybitsKernelSDK.framework */; };
+		FA7556AE1F16D23400D8751A /* BankingDataContextPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7556AD1F16D23400D8751A /* BankingDataContextPlugin.swift */; };
+		FA7556B51F17FD8B00D8751A /* RestaurantContextPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7556B41F17FD8B00D8751A /* RestaurantContextPlugin.swift */; };
+		FA7556BE1F1807CD00D8751A /* ContextMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7556BD1F1807CD00D8751A /* ContextMenuViewController.swift */; };
 		FABE84D81F151CD900833B93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE84D71F151CD900833B93 /* AppDelegate.swift */; };
-		FABE84DA1F151CD900833B93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE84D91F151CD900833B93 /* ViewController.swift */; };
 		FABE84DD1F151CD900833B93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABE84DB1F151CD900833B93 /* Main.storyboard */; };
 		FABE84DF1F151CD900833B93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FABE84DE1F151CD900833B93 /* Assets.xcassets */; };
 		FABE84E21F151CD900833B93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABE84E01F151CD900833B93 /* LaunchScreen.storyboard */; };
 		FABE84ED1F151CD900833B93 /* VanillaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE84EC1F151CD900833B93 /* VanillaTests.swift */; };
 		FABE84F81F151CD900833B93 /* VanillaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE84F71F151CD900833B93 /* VanillaUITests.swift */; };
-		FABE85061F153BAF00833B93 /* ProjectID.flybits in Resources */ = {isa = PBXBuildFile; fileRef = FABE85051F153BAF00833B93 /* ProjectID.flybits */; };
+		FABE85101F1554BF00833B93 /* RelevantContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE850F1F1554BF00833B93 /* RelevantContentViewController.swift */; };
+		FABE852C1F15614900833B93 /* FlybitsSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABE85241F155D3E00833B93 /* FlybitsSDK.framework */; };
+		FABE852D1F15614900833B93 /* FlybitsSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FABE85241F155D3E00833B93 /* FlybitsSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FABE853A1F15633B00833B93 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE85391F15633B00833B93 /* LogInViewController.swift */; };
+		FAD573751F1662BF0057D5BB /* FlybitsContextSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD573721F1662BF0057D5BB /* FlybitsContextSDK.framework */; };
+		FAD573771F1662BF0057D5BB /* FlybitsPushSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD573741F1662BF0057D5BB /* FlybitsPushSDK.framework */; };
+		FAD573791F1662D20057D5BB /* FlybitsContextSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FAD573721F1662BF0057D5BB /* FlybitsContextSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FAD5737B1F1662D20057D5BB /* FlybitsKernelSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FAD573731F1662BF0057D5BB /* FlybitsKernelSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FAD5737D1F1662D20057D5BB /* FlybitsPushSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FAD573741F1662BF0057D5BB /* FlybitsPushSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FAD5739A1F1668560057D5BB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD573991F1668560057D5BB /* RegisterViewController.swift */; };
+		FAD573A21F1681370057D5BB /* FlybitsProjectID.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAD573A11F1681370057D5BB /* FlybitsProjectID.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,10 +48,30 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		FABE85381F15614900833B93 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FAD5737B1F1662D20057D5BB /* FlybitsKernelSDK.framework in Embed Frameworks */,
+				FABE852D1F15614900833B93 /* FlybitsSDK.framework in Embed Frameworks */,
+				FAD5737D1F1662D20057D5BB /* FlybitsPushSDK.framework in Embed Frameworks */,
+				FAD573791F1662D20057D5BB /* FlybitsContextSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		FA546D381F16B8A400038EDA /* Data Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data Models.swift"; sourceTree = "<group>"; };
+		FA7556AD1F16D23400D8751A /* BankingDataContextPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankingDataContextPlugin.swift; sourceTree = "<group>"; };
+		FA7556B41F17FD8B00D8751A /* RestaurantContextPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantContextPlugin.swift; sourceTree = "<group>"; };
+		FA7556BD1F1807CD00D8751A /* ContextMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextMenuViewController.swift; sourceTree = "<group>"; };
 		FABE84D41F151CD900833B93 /* Vanilla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vanilla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABE84D71F151CD900833B93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FABE84D91F151CD900833B93 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FABE84DC1F151CD900833B93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FABE84DE1F151CD900833B93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FABE84E11F151CD900833B93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,7 +82,15 @@
 		FABE84F31F151CD900833B93 /* VanillaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VanillaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABE84F71F151CD900833B93 /* VanillaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanillaUITests.swift; sourceTree = "<group>"; };
 		FABE84F91F151CD900833B93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FABE85051F153BAF00833B93 /* ProjectID.flybits */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ProjectID.flybits; sourceTree = "<group>"; };
+		FABE85071F154BA700833B93 /* Vanilla.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vanilla.entitlements; sourceTree = "<group>"; };
+		FABE850F1F1554BF00833B93 /* RelevantContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelevantContentViewController.swift; sourceTree = "<group>"; };
+		FABE85241F155D3E00833B93 /* FlybitsSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsSDK.framework; path = Frameworks/FlybitsSDK.framework; sourceTree = "<group>"; };
+		FABE85391F15633B00833B93 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		FAD573721F1662BF0057D5BB /* FlybitsContextSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsContextSDK.framework; path = Frameworks/FlybitsContextSDK.framework; sourceTree = "<group>"; };
+		FAD573731F1662BF0057D5BB /* FlybitsKernelSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsKernelSDK.framework; path = Frameworks/FlybitsKernelSDK.framework; sourceTree = "<group>"; };
+		FAD573741F1662BF0057D5BB /* FlybitsPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsPushSDK.framework; path = Frameworks/FlybitsPushSDK.framework; sourceTree = "<group>"; };
+		FAD573991F1668560057D5BB /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		FAD573A11F1681370057D5BB /* FlybitsProjectID.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FlybitsProjectID.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +98,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABE852C1F15614900833B93 /* FlybitsSDK.framework in Frameworks */,
+				FA7556A01F16C45100D8751A /* FlybitsKernelSDK.framework in Frameworks */,
+				FAD573771F1662BF0057D5BB /* FlybitsPushSDK.framework in Frameworks */,
+				FAD573751F1662BF0057D5BB /* FlybitsContextSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,14 +122,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA7556B61F17FD9300D8751A /* Context Data */ = {
+			isa = PBXGroup;
+			children = (
+				FA7556BD1F1807CD00D8751A /* ContextMenuViewController.swift */,
+				FA7556AD1F16D23400D8751A /* BankingDataContextPlugin.swift */,
+				FA7556B41F17FD8B00D8751A /* RestaurantContextPlugin.swift */,
+			);
+			name = "Context Data";
+			sourceTree = "<group>";
+		};
+		FA7556B71F17FDCE00D8751A /* Log In / Register */ = {
+			isa = PBXGroup;
+			children = (
+				FABE85391F15633B00833B93 /* LogInViewController.swift */,
+				FAD573991F1668560057D5BB /* RegisterViewController.swift */,
+			);
+			name = "Log In / Register";
+			sourceTree = "<group>";
+		};
+		FA7556B81F17FDE600D8751A /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				FABE850F1F1554BF00833B93 /* RelevantContentViewController.swift */,
+				FA546D381F16B8A400038EDA /* Data Models.swift */,
+			);
+			name = Content;
+			sourceTree = "<group>";
+		};
 		FABE84CB1F151CD900833B93 = {
 			isa = PBXGroup;
 			children = (
-				FABE85051F153BAF00833B93 /* ProjectID.flybits */,
+				FAD573A11F1681370057D5BB /* FlybitsProjectID.plist */,
 				FABE84D61F151CD900833B93 /* Vanilla */,
 				FABE84EB1F151CD900833B93 /* VanillaTests */,
 				FABE84F61F151CD900833B93 /* VanillaUITests */,
 				FABE84D51F151CD900833B93 /* Products */,
+				FABE85081F15541700833B93 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,8 +175,11 @@
 		FABE84D61F151CD900833B93 /* Vanilla */ = {
 			isa = PBXGroup;
 			children = (
+				FABE85071F154BA700833B93 /* Vanilla.entitlements */,
 				FABE84D71F151CD900833B93 /* AppDelegate.swift */,
-				FABE84D91F151CD900833B93 /* ViewController.swift */,
+				FA7556B71F17FDCE00D8751A /* Log In / Register */,
+				FA7556B81F17FDE600D8751A /* Content */,
+				FA7556B61F17FD9300D8751A /* Context Data */,
 				FABE84DB1F151CD900833B93 /* Main.storyboard */,
 				FABE84DE1F151CD900833B93 /* Assets.xcassets */,
 				FABE84E01F151CD900833B93 /* LaunchScreen.storyboard */,
@@ -128,6 +206,17 @@
 			path = VanillaUITests;
 			sourceTree = "<group>";
 		};
+		FABE85081F15541700833B93 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FABE85241F155D3E00833B93 /* FlybitsSDK.framework */,
+				FAD573721F1662BF0057D5BB /* FlybitsContextSDK.framework */,
+				FAD573731F1662BF0057D5BB /* FlybitsKernelSDK.framework */,
+				FAD573741F1662BF0057D5BB /* FlybitsPushSDK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,6 +227,7 @@
 				FABE84D01F151CD900833B93 /* Sources */,
 				FABE84D11F151CD900833B93 /* Frameworks */,
 				FABE84D21F151CD900833B93 /* Resources */,
+				FABE85381F15614900833B93 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -198,6 +288,14 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = UN8438TPVK;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					FABE84E71F151CD900833B93 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -238,7 +336,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FABE85061F153BAF00833B93 /* ProjectID.flybits in Resources */,
+				FAD573A21F1681370057D5BB /* FlybitsProjectID.plist in Resources */,
 				FABE84E21F151CD900833B93 /* LaunchScreen.storyboard in Resources */,
 				FABE84DF1F151CD900833B93 /* Assets.xcassets in Resources */,
 				FABE84DD1F151CD900833B93 /* Main.storyboard in Resources */,
@@ -266,8 +364,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FABE84DA1F151CD900833B93 /* ViewController.swift in Sources */,
+				FABE85101F1554BF00833B93 /* RelevantContentViewController.swift in Sources */,
+				FAD5739A1F1668560057D5BB /* RegisterViewController.swift in Sources */,
+				FABE853A1F15633B00833B93 /* LogInViewController.swift in Sources */,
+				FA7556AE1F16D23400D8751A /* BankingDataContextPlugin.swift in Sources */,
 				FABE84D81F151CD900833B93 /* AppDelegate.swift in Sources */,
+				FA546D391F16B8A400038EDA /* Data Models.swift in Sources */,
+				FA7556BE1F1807CD00D8751A /* ContextMenuViewController.swift in Sources */,
+				FA7556B51F17FD8B00D8751A /* RestaurantContextPlugin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,10 +525,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Vanilla/Vanilla.entitlements;
 				DEVELOPMENT_TEAM = UN8438TPVK;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Vanilla/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Flybits.Vanilla;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flybits.vanilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -434,10 +545,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Vanilla/Vanilla.entitlements;
 				DEVELOPMENT_TEAM = UN8438TPVK;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Vanilla/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Flybits.Vanilla;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flybits.vanilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
