@@ -220,10 +220,10 @@
             </objects>
             <point key="canvasLocation" x="-1523" y="139"/>
         </scene>
-        <!--Context Menu View Controller-->
+        <!--Set Context-->
         <scene sceneID="xAL-Qy-FQx">
             <objects>
-                <viewController storyboardIdentifier="ContextMenu" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="prr-CX-lhQ" customClass="ContextMenuViewController" customModule="Vanilla" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContextMenu" title="Set Context" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="prr-CX-lhQ" customClass="ContextMenuViewController" customModule="Vanilla" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FRs-9f-cOM"/>
                         <viewControllerLayoutGuide type="bottom" id="kBN-GX-Zhm"/>
