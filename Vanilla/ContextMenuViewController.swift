@@ -56,6 +56,7 @@ class ContextMenuViewController: UIViewController, UITableViewDelegate, UITableV
     
     func receivedUpdate(_ data: Any?, error: Any?) {
         if data != nil {
+            print("Received data: \(String(describing: data))")
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
