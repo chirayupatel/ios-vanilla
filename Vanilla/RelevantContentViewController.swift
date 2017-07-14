@@ -126,7 +126,9 @@ class RelevantContentTableViewController: UITableViewController {
                 guard let data = data, error == nil else {
                     return
                 }
-                cell.imgView.image = UIImage(data: data)
+                DispatchQueue.main.async {
+                    cell.imgView.image = UIImage(data: data)
+                }
             }
             request.resume()
             return cell
@@ -147,7 +149,9 @@ class RelevantContentTableViewController: UITableViewController {
                 guard let data = data, error == nil else {
                     return
                 }
-                cell.imgView.image = UIImage(data: data)
+                DispatchQueue.main.async {
+                    cell.imgView.image = UIImage(data: data)
+                }
             }
             request.resume()
             return cell
