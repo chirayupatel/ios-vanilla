@@ -30,9 +30,15 @@ public class RestaurantDataContextPlugin: NSObject, ContextPlugin {
         
         // Build context data for rules evaluation
         var customData = [String: Any]()
-        customData["dietary"] = dietary
-        customData["price"] = price
-        customData["calorie"] = calorie
+        if dietary != "" {
+            customData["dietary"] = dietary
+        }
+        if price > 0 {
+            customData["price"] = price
+        }
+        if calorie > 0 {
+            customData["calorie"] = calorie
+        }
         
         completion(customData, nil)
     }
