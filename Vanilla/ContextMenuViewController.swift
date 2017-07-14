@@ -33,6 +33,11 @@ class ContextMenuViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: .zero)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ContextMenuViewController.close))
+    }
+    
+    func close() {
+        dismiss(animated: true, completion: nil)
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
