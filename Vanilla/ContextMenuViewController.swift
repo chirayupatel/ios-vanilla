@@ -17,7 +17,7 @@ class MenuCell: UITableViewCell {
 class ContextMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var items = [
-        ["Home","Add Custom Context Data","Logout"],
+        ["Add Custom Context Data"],
         
         // Contexts
         ["Send 'Student'","Send 'High-Net'","Send 'Pensioner'"],
@@ -54,24 +54,22 @@ class ContextMenuViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
+    func receivedUpdate(_ data: Any?, error: Any?) {
+        if data != nil {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let section = Section(rawValue: indexPath.section)!
         
         switch section {
         case .standard:
-            switch indexPath.row {
-            case 0:
-                let relevantContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RelevantContent")
-                DispatchQueue.main.async {
-                    self.show(relevantContentVC, sender: self)
-                }
-            case 1:
-                break
-                // TODO: Add custom context data
-            default:
-                userLogInDelegate?.logout(sender: self)
-            }
+            // TODO: Add custom context data
+            break
         case .contextSegmentationUpdates:
             switch indexPath.row {
             case 0:
@@ -95,6 +93,10 @@ class ContextMenuViewController: UIViewController, UITableViewDelegate, UITableV
             default:
                 context.creditCard = "Mastercard"
             }
+        }
+        context.refreshData(completion: receivedUpdate)
+        DispatchQueue.main.async {
+            self.navigationController?.dismiss(animated: true, completion: nil)
         }
     }
     
