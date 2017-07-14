@@ -68,9 +68,9 @@ class RelevantContentTableViewController: UITableViewController {
             TemplateID.mixed.rawValue: MixedContent.self
         ]
         
-        // Set limit to max, therefore no paging will occur. This is unsuggested but this is
-        //let pager = Pager(limit: UInt.max, offset: 0, countRecords: nil, sortBy: nil, sortOrder: nil)
-        _ = Content.getAllRelevant(with: templateIDsAndAssociatedClassesDictionary, pager: nil) { pagedContent, error in
+        // Set limit to max, therefore no paging will occur.
+        let pager = Pager(limit: UInt(Int32.max), offset: 0, countRecords: nil, sortBy: nil, sortOrder: nil)
+        _ = Content.getAllRelevant(with: templateIDsAndAssociatedClassesDictionary, pager: pager) { pagedContent, error in
             defer {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
