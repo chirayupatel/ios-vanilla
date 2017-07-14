@@ -280,13 +280,6 @@ SWIFT_CLASS("_TtC14FlybitsPushSDK17PushConfiguration")
 /// \param apnsToken The APNS token returned via application:didRegisterForRemoteNotificationsWithDeviceToken:.
 ///
 - (nonnull instancetype)initWithServiceLevel:(enum PushServiceLevel)serviceLevel apnsToken:(NSData * _Nullable)apnsToken autoFetchData:(BOOL)autoFetchData autoReconnect:(BOOL)autoReconnect deviceRegistrationData:(NSDictionary<NSString *, id> * _Nullable)deviceRegistrationData OBJC_DESIGNATED_INITIALIZER;
-/// A convenience function for creating a <code>PushConfiguration</code> with a pre-defined <code>PushServiceLevel</code>.
-/// \param serviceLevel The desired <code>PushServiceLevel</code>.
-///
-///
-/// returns:
-/// A <code>PushConfiguration</code>.
-+ (PushConfiguration * _Nonnull)configurationWithServiceLevel:(enum PushServiceLevel)serviceLevel SWIFT_WARN_UNUSED_RESULT;
 /// A convenience function for creating a <code>PushConfiguration</code> with a pre-defined <code>PushServiceLevel</code> and APNS token.
 /// \param serviceLevel The desired <code>PushServiceLevel</code>.
 ///
@@ -295,60 +288,7 @@ SWIFT_CLASS("_TtC14FlybitsPushSDK17PushConfiguration")
 ///
 /// returns:
 /// A <code>PushConfiguration</code>.
-+ (PushConfiguration * _Nonnull)configurationWithServiceLevel:(enum PushServiceLevel)serviceLevel andAPNSToken:(NSData * _Nonnull)apnsToken SWIFT_WARN_UNUSED_RESULT;
-/// A convenience function for creating a <code>PushConfiguration</code> with a pre-defined <code>PushServiceLevel</code>, APNS token and an option for additional key-value-pairs to be passed to the device registration server.
-/// \param serviceLevel The desired <code>PushServiceLevel</code>.
-///
-/// \param apnsToken The App’s APNS token.
-///
-/// \param andDeviceRegistrationData Additional data that will be passed in key-value-pairs to the device registration server.
-///
-///
-/// returns:
-/// A <code>PushConfiguration</code>.
-+ (PushConfiguration * _Nonnull)configurationWithServiceLevel:(enum PushServiceLevel)serviceLevel apnsToken:(NSData * _Nonnull)apnsToken andDeviceRegistrationData:(NSDictionary<NSString *, id> * _Nonnull)deviceRegistrationData SWIFT_WARN_UNUSED_RESULT;
-/// A convenience function for creating a <code>PushConfiguration</code> with a pre-defined <code>PushServiceLevel</code>, APNS token and whether or not the SDK should fetch objects from Core pushes.
-/// \param serviceLevel The desired <code>PushServiceLevel</code>.
-///
-/// \param apnsToken The App’s APNS token.
-///
-/// \param andAutoFetchData Whether or not the SDK should fetch objects from Core pushes.
-///
-///
-/// returns:
-/// A <code>PushConfiguration</code>.
-+ (PushConfiguration * _Nonnull)configurationWithServiceLevel:(enum PushServiceLevel)serviceLevel apnsToken:(NSData * _Nonnull)apnsToken andAutoFetchData:(BOOL)autoFetchData SWIFT_WARN_UNUSED_RESULT;
-/// A convenience function for creating a <code>PushConfiguration</code> with a pre-defined <code>PushServiceLevel</code>, APNS token, whether or not the SDK should fetch objects from Core pushes and whether or not the SDK should attempt to reconnect when the connection is lost.
-/// \param serviceLevel The desired <code>PushServiceLevel</code>.
-///
-/// \param apnsToken The App’s APNS token.
-///
-/// \param autoFetchData Whether or not the SDK should fetch objects from Core pushes.
-///
-/// \param andAutoReconnect Whether or not the SDK should reconnect when a service interruption occurs or if a JWT has expired.
-///
-///
-/// returns:
-/// A <code>PushConfiguration</code>.
-+ (PushConfiguration * _Nonnull)configurationWithServiceLevel:(enum PushServiceLevel)serviceLevel apnsToken:(NSData * _Nonnull)apnsToken autoFetchData:(BOOL)autoFetchData andAutoReconnect:(BOOL)autoReconnect SWIFT_WARN_UNUSED_RESULT;
-/// A convenience function for creating a <code>PushConfiguration</code> with a pre-defined <code>PushServiceLevel</code>, APNS token, whether or not the SDK should fetch objects from Core pushes, whether or not the SDK should attempt to reconnect when the connection is lost and an option for additional key-value-pairs to be passed to the device registration server.
-/// \param serviceLevel The desired <code>PushServiceLevel</code>.
-///
-/// \param apnsToken The App’s APNS token.
-///
-/// \param autoFetchData Whether or not the SDK should fetch objects from Core pushes.
-///
-/// \param autoReconnect Whether or not the SDK should reconnect when a service interruption occurs or if a JWT has expired.
-///
-/// \param andDeviceRegistrationData Additional data that will be passed in key-value-pairs to the device registration server.
-///
-///
-/// returns:
-/// A <code>PushConfiguration</code>.
-+ (PushConfiguration * _Nonnull)configurationWithServiceLevel:(enum PushServiceLevel)serviceLevel apnsToken:(NSData * _Nonnull)apnsToken autoFetchData:(BOOL)autoFetchData autoReconnect:(BOOL)autoReconnect andDeviceRegistrationData:(NSDictionary<NSString *, id> * _Nonnull)deviceRegistrationData SWIFT_WARN_UNUSED_RESULT;
-/// Updates the APNS token on Flybits push servers. Will be attempted when <code>PushConfiguration</code> is constructed or when APNS token is directly provided.
-/// <em>NOTE: This requires a user to be logged in to Flybits, can be called manually if required. Also, any properties saved in <code>PushConfiguration.deviceRegistrationData</code> will be passed along</em>
-- (void)updateTokenOnServer:(NSData * _Nonnull)token deviceRegistrationData:(NSDictionary<NSString *, id> * _Nullable)deviceRegistrationData withCompletion:(void (^ _Nullable)(NSError * _Nullable))completion;
++ (PushConfiguration * _Nonnull)configurationWithServiceLevel:(enum PushServiceLevel)serviceLevel andAPNSToken:(NSData * _Nullable)apnsToken SWIFT_WARN_UNUSED_RESULT;
 /// Removes user specified device registration data from the SDK.
 - (void)clearDeviceRegistrationData;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
@@ -360,8 +300,8 @@ SWIFT_CLASS("_TtC14FlybitsPushSDK17PushConfiguration")
 SWIFT_CLASS("_TtC14FlybitsPushSDK11PushManager")
 @interface PushManager : NSObject
 /// Singleton access to the <code>PushManager</code>
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) PushManager * _Nonnull sharedManager;)
-+ (PushManager * _Nonnull)sharedManager SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) PushManager * _Nonnull shared;)
++ (PushManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
 /// The configuration of the push manager, includes service level (i.e. foreground / background).
 @property (nonatomic, strong) PushConfiguration * _Nonnull configuration;
 /// The background push preferences
