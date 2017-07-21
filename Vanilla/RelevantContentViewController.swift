@@ -13,6 +13,8 @@ import FlybitsContextSDK
 class TextOnlyCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var nameHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var descriptionHeightConstraint: NSLayoutConstraint!
 }
 
 class ImageOnlyCell: UITableViewCell {
@@ -23,6 +25,8 @@ class MixedCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var nameHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var descriptionHeightConstraint: NSLayoutConstraint!
 }
 
 class NoDataCell: UITableViewCell {
@@ -104,37 +108,76 @@ class RelevantContentTableViewController: UITableViewController {
         return pagedContent.elements.count
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let pagedContent = pagedContent, let templateId = pagedContent.elements[indexPath.row].templateId, let template = TemplateID(rawValue: templateId) else {
+            return 56
+        }
+        let contentInstance = pagedContent.elements[indexPath.row]
+        switch template {
+        case .textOnly:
+            guard let contentData = contentInstance.pagedContentData?.elements.first as? TextOnlyContent else {
+                return 0
+            }
+            var height = contentData.textTitle.value!.heightWithConstrainedWidth(UIScreen.main.bounds.width - 10, for: UIFont.systemFont(ofSize: 17)) + 15
+            height += contentData.textDescription.value!.heightWithConstrainedWidth(UIScreen.main.bounds.width - 10, for: UIFont.systemFont(ofSize: 17)) + 15
+            return height + 8 * 3
+        case .imageOnly:
+            return 150
+        case .mixed:
+            guard let contentData = contentInstance.pagedContentData?.elements.first as? MixedContent else {
+                return 0
+            }
+            var height = contentData.textTitle.value!.heightWithConstrainedWidth(UIScreen.main.bounds.width - 111, for: UIFont.systemFont(ofSize: 17)) + 15
+            height += contentData.textDescription.value!.heightWithConstrainedWidth(UIScreen.main.bounds.width - 111, for: UIFont.systemFont(ofSize: 17)) + 15
+            height += 8 * 3
+            return height > 100 ? height : 100
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let pagedContent = pagedContent else {
+        guard let pagedContent = pagedContent, let templateId = pagedContent.elements[indexPath.row].templateId, let template = TemplateID(rawValue: templateId) else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NoDataCell", for: indexPath) as! NoDataCell
             cell.noDataLabel?.text = "No Data"
             return cell
         }
         let contentInstance = pagedContent.elements[indexPath.row]
-        switch contentInstance.templateId! {
-        case TemplateID.textOnly.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TextOnlyCell", for: indexPath) as! TextOnlyCell
+        var cell: UITableViewCell
+        
+        switch template {
+        case .textOnly:
+            cell = tableView.dequeueReusableCell(withIdentifier: "TextOnlyCell", for: indexPath) as! TextOnlyCell
             guard let contentData = contentInstance.pagedContentData?.elements.first as? TextOnlyContent else {
                 return cell
             }
-            cell.nameLabel?.text = contentData.textTitle.value!
-            cell.descriptionLabel?.text = contentData.textDescription.value!
+            (cell as! TextOnlyCell).nameHeightConstraint.constant = contentData.textTitle.value!.heightWithConstrainedWidth(UIScreen.main.bounds.width - 10, for: UIFont.systemFont(ofSize: 17))
+            (cell as! TextOnlyCell).nameLabel?.text = contentData.textTitle.value!
+            
+            (cell as! TextOnlyCell).descriptionHeightConstraint.constant = contentData.textDescription.value!.heightWithConstrainedWidth(UIScreen.main.bounds.width - 10, for: UIFont.systemFont(ofSize: 17))
+            (cell as! TextOnlyCell).descriptionLabel?.text = contentData.textDescription.value!
+            cell.updateConstraintsIfNeeded()
             return cell
-        case TemplateID.imageOnly.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ImageOnlyCell", for: indexPath) as! ImageOnlyCell
+            
+        case .imageOnly:
+            cell = tableView.dequeueReusableCell(withIdentifier: "ImageOnlyCell", for: indexPath) as! ImageOnlyCell
             guard let contentData = contentInstance.pagedContentData?.elements.first as? ImageOnlyContent else {
                 return cell
             }
-            cell.imgView.downloadImageFrom(url: contentData.imageURL, contentMode: .scaleAspectFill)
+            (cell as! ImageOnlyCell).imgView.downloadImageFrom(url: contentData.imageURL, contentMode: .scaleAspectFill)
             return cell
-        default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MixedCell", for: indexPath) as! MixedCell
+            
+        case .mixed:
+            cell = tableView.dequeueReusableCell(withIdentifier: "MixedCell", for: indexPath) as! MixedCell
             guard let contentData = contentInstance.pagedContentData?.elements.first as? MixedContent else {
                 return cell
             }
-            cell.nameLabel?.text = contentData.textTitle.value!
-            cell.descriptionLabel?.text = contentData.textDescription.value!
-            cell.imgView.downloadImageFrom(url: contentData.imageURL, contentMode: .scaleAspectFill)
+            (cell as! MixedCell).nameHeightConstraint.constant = contentData.textTitle.value!.heightWithConstrainedWidth(UIScreen.main.bounds.width - 111, for: UIFont.systemFont(ofSize: 17))
+            (cell as! MixedCell).nameLabel?.text = contentData.textTitle.value!
+            
+            (cell as! MixedCell).descriptionHeightConstraint.constant = contentData.textDescription.value!.heightWithConstrainedWidth(UIScreen.main.bounds.width - 111, for: UIFont.systemFont(ofSize: 17))
+            (cell as! MixedCell).descriptionLabel?.text = contentData.textDescription.value!
+            
+            (cell as! MixedCell).imgView.downloadImageFrom(url: contentData.imageURL, contentMode: .scaleAspectFill)
+            cell.updateConstraintsIfNeeded()
             return cell
         }
     }
