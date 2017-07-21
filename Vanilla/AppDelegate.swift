@@ -137,7 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("APNS registration failed: \(error.localizedDescription)")
     }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> ()) {
         print("Did receive remote notification")
         
         if let aps = userInfo["aps"] as? [String: Any], let alert = aps["alert"] as? [String: Any] {

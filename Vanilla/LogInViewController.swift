@@ -12,7 +12,7 @@ import FlybitsContextSDK
 import FlybitsPushSDK
 
 protocol UserLogInDelegate: class {
-    func connect(with flybitsIDP: FlybitsIDP, completion: @escaping (Bool, Error?) -> Void)
+    func connect(with flybitsIDP: FlybitsIDP, completion: @escaping (Bool, Error?) -> ())
     func logout(sender: Any?)
 }
 
@@ -87,7 +87,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
     
     // MARK: - UserLogInDelegate
     
-    func connect(with flybitsIDP: FlybitsIDP, completion: @escaping (Bool, Error?) -> Void) {
+    func connect(with flybitsIDP: FlybitsIDP, completion: @escaping (Bool, Error?) -> ()) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let projectID = appDelegate.projectID!
         let scopes = appDelegate.scopes
