@@ -9,36 +9,41 @@
 import FlybitsContextSDK
 
 // ProprietaryDataProvider allows to create and send proprietary custom context data for evaluating context rules.
-public class RestaurantDataContextPlugin: NSObject, ContextPlugin {
+public class RestaurantDataContextPlugin: NSObject, ContextPlugin, DictionaryConvertible {
     public var pluginID: String = "ctx.rgarestaurant.restaurant"
     public var refreshTime: Int32 = 15
     public var timeUnit: TimeUnit = .seconds
     
     // Initialize proprietary custom data
-    public var dietary: String
-    public var price: Double
-    public var calorie: Double
+    public var dietary: String?
+    public var price: Double?
+    public var calorie: Double?
     
-    public init(dietary: String = "", price: Double, calorie: Double = -Double.greatestFiniteMagnitude) {
+    public init(dietary: String?, price: Double?, calorie: Double? = -Double.greatestFiniteMagnitude) {
         self.dietary = dietary
         self.price = price
         self.calorie = calorie
         super.init()
     }
     
-    public func refreshData(completion: @escaping (Any?, NSError?) -> Void) {
+    func toDictionary() -> [String: Any] {
+        var dictionary = [String: Any]()
+        if let dietary = dietary {
+            dictionary["dietary"] = dietary
+        }
+        if let price = price {
+            dictionary["price"] = price
+        }
+        if let calorie = calorie {
+            dictionary["calorie"] = calorie
+        }
+        return dictionary
+    }
+    
+    public func refreshData(completion: @escaping (Any?, NSError?) -> ()) {
         
         // Build context data for rules evaluation
-        var customData = [String: Any]()
-        if dietary != "" {
-            customData["dietary"] = dietary
-        }
-        if price > 0 {
-            customData["price"] = price
-        }
-        if calorie > 0 {
-            customData["calorie"] = calorie
-        }
+        let customData = toDictionary()
         
         completion(customData, nil)
     }

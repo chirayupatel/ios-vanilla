@@ -8,36 +8,46 @@
 
 import FlybitsContextSDK
 
-public class BankingDataContextPlugin: NSObject, ContextPlugin {
+protocol DictionaryConvertible {
+    func toDictionary() -> [String: Any]
+}
+
+public class BankingDataContextPlugin: NSObject, ContextPlugin, DictionaryConvertible {
+
     public var pluginID: String = "ctx.rgabanking.banking"
     public var refreshTime: Int32 = 15
     public var timeUnit: TimeUnit = .seconds
     
     // Initialize proprietary custom data
-    public var accountBalance: Double
-    public var segmentation: String
-    public var creditCard: String
+    public var accountBalance: Double?
+    public var segmentation: String?
+    public var creditCard: String?
     
-    public init(accountBalance: Double, segmentation: String = "", creditCard: String = "") {
+    public init(accountBalance: Double?, segmentation: String?, creditCard: String?) {
         self.accountBalance = accountBalance
         self.segmentation = segmentation
         self.creditCard = creditCard
         super.init()
     }
     
-    public func refreshData(completion: @escaping (Any?, NSError?) -> Void) {
+    func toDictionary() -> [String: Any] {
+        var dictionary = [String: Any]()
+        if let accountBalance = accountBalance {
+            dictionary["accountBalance"] = accountBalance
+        }
+        if let segmentation = segmentation {
+            dictionary["segmentation"] = segmentation
+        }
+        if let creditCard = creditCard {
+            dictionary["creditCard"] = creditCard
+        }
+        return dictionary
+    }
+    
+    public func refreshData(completion: @escaping (Any?, NSError?) -> ()) {
         
         // Build context data for rules evaluation
-        var customData = [String: Any]()
-        if accountBalance > 0 {
-            customData["accountBalance"] = accountBalance
-        }
-        if segmentation != "" {
-            customData["segmentation"] = segmentation
-        }
-        if creditCard != "" {
-            customData["creditCard"] = creditCard
-        }
+        let customData = toDictionary()
         
         completion(customData, nil)
     }
