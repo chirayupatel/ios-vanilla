@@ -53,7 +53,11 @@ class RelevantContentTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Context", style: .plain, target: self, action: #selector(RelevantContentTableViewController.showContextMenu))
         
         self.contextPlugin = BankingDataContextPlugin(accountBalance: 0, segmentation: "", creditCard: "")
-        _ = try? ContextManager.shared.register(self.contextPlugin!)
+        do {
+            try ContextManager.shared.register(self.contextPlugin!)
+        } catch {
+            print(error.localizedDescription)
+        }
         
         if relevantTimer == nil {
             DispatchQueue.main.async {
@@ -66,7 +70,7 @@ class RelevantContentTableViewController: UITableViewController {
     var relevantTimer: Timer?
     func loadAllRelevantData() {
         // Associate template IDs with their data models
-        let templateIDsAndAssociatedClassesDictionary: [String: ContentData.Type] = [
+        let templateIDsAndClassModelsDictionary: [String: ContentData.Type] = [
             TemplateID.textOnly.rawValue: TextOnlyContent.self,
             TemplateID.imageOnly.rawValue: ImageOnlyContent.self,
             TemplateID.mixed.rawValue: MixedContent.self
@@ -74,7 +78,7 @@ class RelevantContentTableViewController: UITableViewController {
         
         // Set limit to max, therefore no paging will occur.
         let pager = Pager(limit: UInt(Int32.max), offset: 0, countRecords: nil, sortBy: nil, sortOrder: nil)
-        _ = Content.getAllRelevant(with: templateIDsAndAssociatedClassesDictionary, pager: pager) { pagedContent, error in
+        _ = Content.getAllRelevant(with: templateIDsAndClassModelsDictionary, pager: pager) { pagedContent, error in
             defer {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()

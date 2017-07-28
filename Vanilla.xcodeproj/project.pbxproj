@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA4656901F1C59CB00A13F72 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA46568F1F1C59CB00A13F72 /* Extensions.swift */; };
 		FA546D391F16B8A400038EDA /* Data Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA546D381F16B8A400038EDA /* Data Models.swift */; };
 		FA7556A01F16C45100D8751A /* FlybitsKernelSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD573731F1662BF0057D5BB /* FlybitsKernelSDK.framework */; };
 		FA7556AE1F16D23400D8751A /* BankingDataContextPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7556AD1F16D23400D8751A /* BankingDataContextPlugin.swift */; };
@@ -66,6 +67,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FA46568F1F1C59CB00A13F72 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FA47E4B71F1D9647002262EF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FA546D381F16B8A400038EDA /* Data Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data Models.swift"; sourceTree = "<group>"; };
 		FA7556AD1F16D23400D8751A /* BankingDataContextPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankingDataContextPlugin.swift; sourceTree = "<group>"; };
 		FA7556B41F17FD8B00D8751A /* RestaurantContextPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantContextPlugin.swift; sourceTree = "<group>"; };
@@ -144,6 +147,7 @@
 		FA7556B81F17FDE600D8751A /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				FA46568F1F1C59CB00A13F72 /* Extensions.swift */,
 				FABE850F1F1554BF00833B93 /* RelevantContentViewController.swift */,
 				FA546D381F16B8A400038EDA /* Data Models.swift */,
 			);
@@ -153,6 +157,7 @@
 		FABE84CB1F151CD900833B93 = {
 			isa = PBXGroup;
 			children = (
+				FA47E4B71F1D9647002262EF /* README.md */,
 				FAD573A11F1681370057D5BB /* FlybitsProjectID.plist */,
 				FABE84D61F151CD900833B93 /* Vanilla */,
 				FABE84EB1F151CD900833B93 /* VanillaTests */,
@@ -365,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FABE85101F1554BF00833B93 /* RelevantContentViewController.swift in Sources */,
+				FA4656901F1C59CB00A13F72 /* Extensions.swift in Sources */,
 				FAD5739A1F1668560057D5BB /* RegisterViewController.swift in Sources */,
 				FABE853A1F15633B00833B93 /* LogInViewController.swift in Sources */,
 				FA7556AE1F16D23400D8751A /* BankingDataContextPlugin.swift in Sources */,

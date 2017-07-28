@@ -28,20 +28,13 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
-        // Temporary fix for backend issue
-        let projectID = (UIApplication.shared.delegate as! AppDelegate).projectID!
         let scopes = (UIApplication.shared.delegate as! AppDelegate).scopes
-        let email = UserDefaults.standard.value(forKey: "email") as? String
-        let password = UserDefaults.standard.value(forKey: "password") as? String
-        if email == nil || password == nil {
-            return
-        }
-        let identityProvider = FlybitsIDP(email: email!, password: password!)
-        let flybitsManager = FlybitsManager(projectID: projectID, idProvider: identityProvider, scopes: scopes)
-        
-        _ = flybitsManager.connect { user, error in
-            guard let user = user, error == nil else {
+        _ = FlybitsManager.isConnected(scopes: scopes) { isConnected, user, error in
+            guard error == nil else {
                 print(error!.localizedDescription)
+                return
+            }
+            guard isConnected, let user = user else {
                 return
             }
             print("Welcome back, \(user.firstname!)")
@@ -99,7 +92,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
         _ = flybitsManager.connect { user, error in
             guard let user = user, error == nil else {
                 print("Failed to connect")
-                completion(false, NSError(domain: "ios-vanilla", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to connect"]))
+                completion(false, NSError(domain: "com.flybits.app.ios-vanilla", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to connect"]))
                 return
             }
             print("Welcome, \(user.firstname!)")
@@ -136,11 +129,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
             flybitsManager = FlybitsManager(projectID: projectID, idProvider: identityProvider, scopes: scopes)
         }
         _ = flybitsManager?.disconnect { jwt, error in
-            guard let jwt = jwt, error == nil else {
-                print(error!.localizedDescription)
+            guard let _ = jwt, error == nil else {
+                print("Error logging out: \(error!.localizedDescription)")
                 return
             }
-            print("Logged out with jwt: \(jwt)")
+            print("Logged out")
         }
     }
 }

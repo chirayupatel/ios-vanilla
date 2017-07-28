@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FlybitsManager.enableLogging()
         
+        UINavigationBar.appearance().tintColor = UIColor(red: 41/255, green: 190/255, blue: 238/255, alpha: 1)
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 51/255, green: 62/255, blue: 72/255, alpha: 1)]
         
         var shouldPerformAdditionalDelegateHandling = true
         
