@@ -14,34 +14,56 @@ class MenuCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
 }
 
+class CustomContextViewController: UIViewController {
+    
+    @IBOutlet weak var textField: UITextField!
+    weak var contextPlugin: ContextPlugin?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Custom Context"
+        textField.text = (contextPlugin as? BankingDataContextPlugin)?.segmentation ?? ""
+    }
+    
+    @IBAction func setContext(sender: Any?) {
+        (contextPlugin as! BankingDataContextPlugin).segmentation = textField?.text ?? ""
+        navigationController?.topViewController?.dismiss(animated: true) {
+            self.navigationController?.topViewController?.dismiss(animated: true, completion: nil)
+        }
+    }
+}
+
 class ContextMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var items = [
         ["Add Custom Context Data"],
-        
-        // Contexts
         ["Send 'Student'","Send 'High-Net'","Send 'Pensioner'"],
         ["Send Balance: 1000","Send Balance: 10000"],
         ["Send Credit Card: VISA","Send Credit Card: Mastercard"]
     ]
-    // Edit this? Edit effect tableView(_:didSelectRowAt:)
     
     @IBOutlet weak var tableView: UITableView!
-    weak var userLogInDelegate: UserLogInDelegate?
     var contextPlugin: BankingDataContextPlugin!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView(frame: .zero)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ContextMenuViewController.close))
+        tableView.tableFooterView = UIView(frame: .zero)
     }
     
     func close() {
         dismiss(animated: true, completion: nil)
     }
-
+    
+    // MARK: - TableView
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return Section.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return [nil, "Segmentation", "Account Balance", "Credit Card"][section]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,7 +75,13 @@ class ContextMenuViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as! MenuCell
         
         let section = Section(rawValue: indexPath.section)!
-        cell.nameLabel?.text = items[section.rawValue][indexPath.row]
+        let text = items[section.rawValue][indexPath.row]
+        cell.nameLabel?.text = text
+        if let selected = tableView.indexPathForSelectedRow, selected == indexPath {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
         cell.imgView?.image = UIImage(named: "ic_launcher")
         
         return cell
@@ -73,9 +101,14 @@ class ContextMenuViewController: UIViewController, UITableViewDelegate, UITableV
         let section = Section(rawValue: indexPath.section)!
         
         switch section {
-        case .standard:
-            // TODO: Add custom context data
-            break
+        case .customContext:
+            
+            let customConextVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomContext") as! CustomContextViewController
+            customConextVC.contextPlugin = contextPlugin
+            DispatchQueue.main.async {
+                self.show(customConextVC, sender: self)
+            }
+            
         case .contextSegmentationUpdates:
             switch indexPath.row {
             case 0:
@@ -101,13 +134,25 @@ class ContextMenuViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         
-        DispatchQueue.main.async {
-            self.navigationController?.dismiss(animated: true, completion: nil)
+        let contextData = contextPlugin.toDictionary()
+        
+        _ = ContextDataRequest.sendData([contextData]) { (error) -> () in
+            guard error == nil else {
+                print("Error sending context data: \(error!.localizedDescription)")
+                return
+            }
+            print("Successfully uploaded context data")
+        }.execute()
+        
+        if section != .customContext {
+            DispatchQueue.main.async {
+                self.navigationController?.dismiss(animated: true, completion: nil)
+            }
         }
     }
     
     enum Section: Int {
-        case standard, contextSegmentationUpdates, contextBalanceUpdates, contextCreditCardUpdates
+        case customContext, contextSegmentationUpdates, contextBalanceUpdates, contextCreditCardUpdates
         static var count: Int { return Section.contextCreditCardUpdates.hashValue + 1}
     }
 }
