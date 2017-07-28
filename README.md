@@ -12,13 +12,13 @@ Please visit our [developer portal](https://devportal.flybits.com)
 ## Installation
 ### CocoaPods
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+[CocoaPods](http://cocoapods.org) is a dependency manager for macOS, iOS, tvOS and watchOS projects. You can install it with the following command:
 
 ```bash
 $ gem install cocoapods
 ```
 
-To integrate the Flybits SDK into your Xcode project, one option is to use CocoaPod! To do so, specify it in your Podfile:
+To integrate the Flybits SDK into your Xcode project, add a Podfile file to your project and add the following lines:
 
 ```ruby
 use_frameworks!
@@ -27,6 +27,10 @@ pod 'FlybitsKernelSDK'
 pod 'FlybitsContextSDK'
 pod 'FlybitsPushSDK'
 ```
+
+### Manually
+
+Add any Flybits frameworks to your project, navigate to your project file, project target, and ensure to add the frameworks to both Linked Frameworks and Libraries and Embedded Binaries sections.
 
 ### Code Implementation
 
@@ -39,6 +43,10 @@ import FlybitsPushSDK
 ```
 
 ## Implementation
+
+### Flybits Project ID
+
+Once you have registered and created an account on the Flybits Developer Portal, head to the Project
 
 ### Logging in with Single Sign-On
 
