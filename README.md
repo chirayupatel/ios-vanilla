@@ -18,7 +18,7 @@ Please visit our [developer portal](https://devportal.flybits.com)
 $ gem install cocoapods
 ```
 
-To integrate the Flybits SDK into your Xcode project, one option is to use CocoaPod! To do so, specify it in your `Podfile`:
+To integrate the Flybits SDK into your Xcode project, one option is to use CocoaPod! To do so, specify it in your Podfile:
 
 ```ruby
 use_frameworks!
@@ -30,7 +30,7 @@ pod 'FlybitsPushSDK'
 
 ### Code Implementation
 
-First import the relevant SDK into your project:
+First import the relevant SDKs into your project:
 
 ```swift
 import FlybitsKernelSDK
@@ -42,7 +42,7 @@ import FlybitsPushSDK
 
 ### Logging in with Single Sign-On
 
-For your user-login logic, use either connect(completion:) or isConnected(scopes:completion:)
+For your user-login logic, use our `connect(completion:)` API
 
 ```swift
 let manager = FlybitsManager()
@@ -57,7 +57,11 @@ let connectRequest = flybitsManager.connect { user, error in
     print("Welcome, \(user.firstname!)")
     // Logged in
 }
+```
 
+Or if a user has already signed in, avoid asking them for their credentials a second time by using the `isConnected(scopes:completion:)` API
+
+```swift
 let isConnectedRequest = FlybitsManager.isConnected(scopes: scopes) { isConnected, user, error in
     guard error == nil else {
         print(error!.localizedDescription)
@@ -76,9 +80,10 @@ let isConnectedRequest = FlybitsManager.isConnected(scopes: scopes) { isConnecte
 let contextPlugin = BankingDataContextPlugin(accountBalance: 50, segmentation: "Student", creditCard: "VISA")
 _ = try? ContextManager.shared.register(self.contextPlugin!)
 let contextData = contextPlugin.toDictionary()
+
 // ...
 
-_ = ContextDataRequest.sendData([contextData]) { (error) -> () in
+let contextDataRequest = ContextDataRequest.sendData([contextData]) { (error) -> () in
     guard error == nil else {
         print("Error sending context data: \(error!.localizedDescription)")
         return
@@ -90,7 +95,7 @@ _ = ContextDataRequest.sendData([contextData]) { (error) -> () in
 ### Getting Content
 
 ```swift
-_ = Content.getAllRelevant(with: templateIDsAndClassModelsDictionary, pager: pager) { pagedContent, error in
+let contentDataRequest = Content.getAllRelevant(with: templateIDsAndClassModelsDictionary, pager: pager) { pagedContent, error in
     guard let pagedContent = pagedContent, error == nil else {
         print("Returned without any relevant content")
         return
