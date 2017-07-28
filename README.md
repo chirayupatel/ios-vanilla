@@ -46,7 +46,9 @@ import FlybitsPushSDK
 
 ### Flybits Project ID
 
-Once you have created an account on the Flybits Developer Portal and logged in, click the MyProjects link in the top right corner and "Create new project". Once you have finished creating a project, a Project ID is assigned to your project. This identifier is required for you to access our services. Add this to a new Property List file (plist) with one key-value pair in your Xcode project. Supply the key "ProjectID" and value set to your new ProjectID. 
+Obtain your Project ID from the Flybits [Developer Portal](https://devportal.flybits.com)
+
+Once you have created an account on the Flybits Developer Portal and logged in, click the "MyProjects" link in the top right corner and "Create new project". Once you have finished creating a project, a Project ID is assigned to your new project - this identifier is required for you to access our services. Add this to a new Property List file (plist) with one key-value pair in your Xcode project. Supply the key "ProjectID" and value set to your new Project ID. 
 
 ### Logging in with Single Sign-On
 
