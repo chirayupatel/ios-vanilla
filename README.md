@@ -67,7 +67,7 @@ let isConnectedRequest = FlybitsManager.isConnected(scopes: scopes) { isConnecte
         print(error!.localizedDescription)
     }
     guard isConnected, let user = user else {
-        print("You're not logged in")
+        // Not logged in
         return
     }
     // Logged in
@@ -79,16 +79,18 @@ let isConnectedRequest = FlybitsManager.isConnected(scopes: scopes) { isConnecte
 ```swift
 let contextPlugin = BankingDataContextPlugin(accountBalance: 50, segmentation: "Student", creditCard: "VISA")
 _ = try? ContextManager.shared.register(self.contextPlugin!)
+
+// ... Potentially mutate context plugin data here ...
+
 let contextData = contextPlugin.toDictionary()
 
-// ...
-
+// Upload any context data you want to update here by passing it in an array
 let contextDataRequest = ContextDataRequest.sendData([contextData]) { (error) -> () in
     guard error == nil else {
-        print("Error sending context data: \(error!.localizedDescription)")
+        // Error sending context data
         return
     }
-    print("Successfully uploaded context data")
+    // Successfully uploaded context data
 }.execute()
 ```
 
@@ -97,10 +99,10 @@ let contextDataRequest = ContextDataRequest.sendData([contextData]) { (error) ->
 ```swift
 let contentDataRequest = Content.getAllRelevant(with: templateIDsAndClassModelsDictionary, pager: pager) { pagedContent, error in
     guard let pagedContent = pagedContent, error == nil else {
-        print("Returned without any relevant content")
+        // Returned without any relevant content
         return
     }
-    self.pagedContent = pagedContent
+    // Valid content
 }
 ```
 
