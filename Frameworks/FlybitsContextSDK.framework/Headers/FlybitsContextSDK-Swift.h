@@ -939,6 +939,7 @@ SWIFT_CLASS("_TtC17FlybitsContextSDK4Rule")
 /// query.
 ///
 - (nonnull instancetype)initWithName:(NSString * _Nonnull)name predicate:(RulePredicate * _Nonnull)predicate;
+- (NSDictionary<NSString *, id> * _Nullable)toDictionaryAndReturnError:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 

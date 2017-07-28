@@ -588,15 +588,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class) enum Environment environment;)
 /// Gateway URL.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull gatewayURL;)
 + (NSString * _Nonnull)gatewayURL SWIFT_WARN_UNUSED_RESULT;
-/// The DNS address of the MQTT push server.
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull MQTTHost;)
-+ (NSString * _Nonnull)MQTTHost SWIFT_WARN_UNUSED_RESULT;
-/// The port of the MQTT push server.
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) uint32_t MQTTPort;)
-+ (uint32_t)MQTTPort SWIFT_WARN_UNUSED_RESULT;
-/// Whether or not this deployment uses SSL
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) BOOL MQTTUseSSL;)
-+ (BOOL)MQTTUseSSL SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 
