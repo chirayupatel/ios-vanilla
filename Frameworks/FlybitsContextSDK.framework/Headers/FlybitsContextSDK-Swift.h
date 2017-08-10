@@ -438,11 +438,16 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) ContextManag
 /// Retrieves the latest rules and their evaluation status.
 /// <em>NOTE: Added and/or updated rules are broadcast via NSNotificationCenter.</em>
 - (void)refreshRules;
-/// Registers a given <code>ContextPlugin</code> with the <code>ContextManager</code> that indicates the polling frequency (if any) as well as the upload frequency.
-/// <em>NOTE: If the plugin already exists, the plugin is updated – with new values for refreshTime and, priority and active is set to ‘true’ stored in core data.</em>
-/// \param plugin The <code>ContextPlugin</code> to register with the <code>ContextManager</code> - will be updated in the instance the plugin exists already.
+/// Registers a given Custom <code>ContextPlugin</code> with the <code>ContextManager</code>.
+/// <em>NOTE: This function must be called from the main thread.</em>
+/// \param plugin The custom <code>ContextPlugin</code> instance to register with the <code>ContextManager</code> - will be updated in the instance the plugin exists already.
 ///
 - (id <ContextPlugin> _Nullable)registerContextPlugin:(id <ContextPlugin> _Nonnull)plugin withError:(NSError * _Nullable * _Nullable)error;
+/// Registers a given <code>ReservedContextPlugin</code> with the <code>ContextManager</code> that indicates the polling frequency as well as the upload frequency.
+/// <em>NOTE: If the plugin already exists, the plugin is updated – with new values for refreshTime and, priority and active is set to ‘true’ stored in core data.</em>
+/// <em>NOTE: This function must be called from the main thread.</em>
+/// \param plugin The <code>ReservedContextPlugin</code> to register with the <code>ContextManager</code> - will be updated in the instance the plugin exists already.
+///
 - (id <ContextPlugin> _Nullable)registerReservedContextPlugin:(enum ReservedContextPlugin)plugin refreshTime:(NSInteger)refreshTime timeUnit:(FlybitsUtilitiesTimeUnit)timeUnit;
 - (id <ContextPlugin> _Nullable)retrieveReservedContextPlugin:(enum ReservedContextPlugin)plugin SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)removeContextPlugin:(id <ContextPlugin> _Nonnull)plugin;
@@ -874,10 +879,10 @@ typedef SWIFT_ENUM(NSInteger, ReservedContextPlugin) {
   ReservedContextPluginAudio = 1,
   ReservedContextPluginAvailability = 2,
   ReservedContextPluginBattery = 3,
-  ReservedContextPluginEddystone = 4,
-  ReservedContextPluginIBeacon = 5,
-  ReservedContextPluginCarrier = 6,
-  ReservedContextPluginCoreLocation = 7,
+  ReservedContextPluginCarrier = 4,
+  ReservedContextPluginCoreLocation = 5,
+  ReservedContextPluginEddystone = 6,
+  ReservedContextPluginIBeacon = 7,
   ReservedContextPluginLanguage = 8,
   ReservedContextPluginNetwork = 9,
   ReservedContextPluginOAuth = 10,
@@ -1131,10 +1136,13 @@ SWIFT_CLASS("_TtC17FlybitsContextSDK13RulePredicate")
 /// \param distanceInMeters The distance in meters that should be used as the maximum distance
 /// between the device the point defined using pointLat and pointLng.
 ///
+/// \param isInArea Indicates whether the rule will be evaluated when the user is within the
+/// range or out of range.
+///
 ///
 /// returns:
 /// The <code>RulePredicate</code> that can be used for constructing a <code>Rule</code>.
-+ (RulePredicate * _Nullable)withinRangeWithPointLat:(double)pointLat pointLng:(double)pointLng distanceInMeters:(NSInteger)distanceInMeters SWIFT_WARN_UNUSED_RESULT;
++ (RulePredicate * _Nullable)withinRangeWithPointLat:(double)pointLat pointLng:(double)pointLng distanceInMeters:(NSInteger)distanceInMeters isInArea:(BOOL)isInArea SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 
@@ -1261,6 +1269,9 @@ SWIFT_CLASS("_TtC17FlybitsContextSDK20iBeaconContextPlugin")
 - (void)locationContextPlugin:(CoreLocationContextPlugin * _Nonnull)contextPlugin didRangeBeacons:(NSArray<CLBeacon *> * _Nonnull)beacons in:(CLBeaconRegion * _Nonnull)region;
 - (void)locationContextPlugin:(CoreLocationContextPlugin * _Nonnull)contextPlugin didDetermineState:(CLRegionState)state forRegion:(CLRegion * _Nonnull)region;
 - (void)locationContextPlugin:(CoreLocationContextPlugin * _Nonnull)contextPlugin rangingBeaconsDidFailFor:(CLBeaconRegion * _Nonnull)region withError:(NSError * _Nonnull)error;
+- (void)locationContextPlugin:(CoreLocationContextPlugin * _Nonnull)contextPlugin didStartMonitoringFor:(CLRegion * _Nonnull)region;
+- (void)locationContextPlugin:(CoreLocationContextPlugin * _Nonnull)contextPlugin monitoringDidFailFor:(CLRegion * _Nullable)region withError:(NSError * _Nonnull)error;
+- (void)locationContextPlugin:(CoreLocationContextPlugin * _Nonnull)contextPlugin didFailWithError:(NSError * _Nonnull)error;
 - (nonnull instancetype)initWithApiFrequency:(NSInteger)apiFrequency SWIFT_UNAVAILABLE;
 @end
 

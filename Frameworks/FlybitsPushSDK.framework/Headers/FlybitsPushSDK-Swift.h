@@ -166,15 +166,6 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 /// returns:
 /// A cancellable <code>FlybitsRequest</code> object.
 + (FlybitsRequest * _Nonnull)pushTemplatesFilteredByQuery:(PushQuery * _Nonnull)query withCompletion:(void (^ _Nonnull)(NSArray<PushTemplate *> * _Nullable, Pager * _Nullable, NSError * _Nullable))completion SWIFT_WARN_UNUSED_RESULT;
-/// Requests a specific PushTemplate by ID.
-/// \param by The ID of the PushTemplate to retrieve.
-///
-/// \param completion callback that returns a <code>PushTemplate</code> on success, an error on failure.
-///
-///
-/// returns:
-/// A cancellable <code>FlybitsRequest</code> object.
-+ (FlybitsRequest * _Nonnull)getPushTemplateWithID:(NSString * _Nonnull)pushTemplateID withCompletion:(void (^ _Nonnull)(PushTemplate * _Nullable, NSError * _Nullable))completion SWIFT_WARN_UNUSED_RESULT;
 /// Creates a <code>PushTemplate</code> on the server with the provided object.
 /// \param pushTemplate The <code>PushTemplate</code> to register with the server.
 ///
@@ -381,8 +372,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 /// A list of error codes that can be issued by the <code>PushManager</code>.
 SWIFT_CLASS("_TtC14FlybitsPushSDK25PushManagerErrorConstants")
 @interface PushManagerErrorConstants : NSObject
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSNotificationName _Nonnull PushMessageReceived_DEBUG;)
-+ (NSNotificationName _Nonnull)PushMessageReceived_DEBUG SWIFT_WARN_UNUSED_RESULT;
 /// <code>com.flybits.push.error.fetchEmpty</code> - An error indicating that no data was returned when a fetch was attempted.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull FetchEmpty;)
 + (NSString * _Nonnull)FetchEmpty SWIFT_WARN_UNUSED_RESULT;
